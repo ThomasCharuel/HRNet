@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Modal, Box } from '@mui/material';
+
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  const handleSaveEmployee = () => {
+    handleOpenModal();
+  };
+
   return (
     <>
       <div className="title">
@@ -50,11 +71,13 @@ export default function Home() {
           </select>
         </form>
 
-        <button>Save</button>
+        <button onClick={handleSaveEmployee}>Save</button>
       </div>
-      <div id="confirmation" className="modal">
-        Employee Created!
-      </div>
+      <Modal open={isModalOpen} onClose={handleCloseModal}>
+        <Box sx={modalStyle}>
+          <p>Employee Created!</p>
+        </Box>
+      </Modal>
     </>
   );
 }

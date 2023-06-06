@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MUIDataTable from 'mui-datatables';
@@ -73,6 +73,11 @@ const columns = [
 export default function Employees() {
   const employees = useSelector(selectEmployees);
   console.log(employees);
+
+  useEffect(() => {
+    document.title = 'HRnet - Current Employees';
+  }, []);
+
   return (
     <div id="employee-div" className="container">
       <h1>Current Employees</h1>
