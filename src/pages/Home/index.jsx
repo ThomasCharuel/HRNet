@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Modal, Box } from '@mui/material';
+import { Modal, Box, Container, Button, TextField } from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormSelect from '../../components/FormSelect';
+import { states, departments } from './constants';
 
 const modalStyle = {
   position: 'absolute',
@@ -19,257 +20,39 @@ const modalStyle = {
   p: 4,
 };
 
-const states = [
-  {
-    name: 'Alabama',
-    value: 'AL',
-  },
-  {
-    name: 'Alaska',
-    value: 'AK',
-  },
-  {
-    name: 'American Samoa',
-    value: 'AS',
-  },
-  {
-    name: 'Arizona',
-    value: 'AZ',
-  },
-  {
-    name: 'Arkansas',
-    value: 'AR',
-  },
-  {
-    name: 'California',
-    value: 'CA',
-  },
-  {
-    name: 'Colorado',
-    value: 'CO',
-  },
-  {
-    name: 'Connecticut',
-    value: 'CT',
-  },
-  {
-    name: 'Delaware',
-    value: 'DE',
-  },
-  {
-    name: 'District Of Columbia',
-    value: 'DC',
-  },
-  {
-    name: 'Federated States Of Micronesia',
-    value: 'FM',
-  },
-  {
-    name: 'Florida',
-    value: 'FL',
-  },
-  {
-    name: 'Georgia',
-    value: 'GA',
-  },
-  {
-    name: 'Guam',
-    value: 'GU',
-  },
-  {
-    name: 'Hawaii',
-    value: 'HI',
-  },
-  {
-    name: 'Idaho',
-    value: 'ID',
-  },
-  {
-    name: 'Illinois',
-    value: 'IL',
-  },
-  {
-    name: 'Indiana',
-    value: 'IN',
-  },
-  {
-    name: 'Iowa',
-    value: 'IA',
-  },
-  {
-    name: 'Kansas',
-    value: 'KS',
-  },
-  {
-    name: 'Kentucky',
-    value: 'KY',
-  },
-  {
-    name: 'Louisiana',
-    value: 'LA',
-  },
-  {
-    name: 'Maine',
-    value: 'ME',
-  },
-  {
-    name: 'Marshall Islands',
-    value: 'MH',
-  },
-  {
-    name: 'Maryland',
-    value: 'MD',
-  },
-  {
-    name: 'Massachusetts',
-    value: 'MA',
-  },
-  {
-    name: 'Michigan',
-    value: 'MI',
-  },
-  {
-    name: 'Minnesota',
-    value: 'MN',
-  },
-  {
-    name: 'Mississippi',
-    value: 'MS',
-  },
-  {
-    name: 'Missouri',
-    value: 'MO',
-  },
-  {
-    name: 'Montana',
-    value: 'MT',
-  },
-  {
-    name: 'Nebraska',
-    value: 'NE',
-  },
-  {
-    name: 'Nevada',
-    value: 'NV',
-  },
-  {
-    name: 'New Hampshire',
-    value: 'NH',
-  },
-  {
-    name: 'New Jersey',
-    value: 'NJ',
-  },
-  {
-    name: 'New Mexico',
-    value: 'NM',
-  },
-  {
-    name: 'New York',
-    value: 'NY',
-  },
-  {
-    name: 'North Carolina',
-    value: 'NC',
-  },
-  {
-    name: 'North Dakota',
-    value: 'ND',
-  },
-  {
-    name: 'Northern Mariana Islands',
-    value: 'MP',
-  },
-  {
-    name: 'Ohio',
-    value: 'OH',
-  },
-  {
-    name: 'Oklahoma',
-    value: 'OK',
-  },
-  {
-    name: 'Oregon',
-    value: 'OR',
-  },
-  {
-    name: 'Palau',
-    value: 'PW',
-  },
-  {
-    name: 'Pennsylvania',
-    value: 'PA',
-  },
-  {
-    name: 'Puerto Rico',
-    value: 'PR',
-  },
-  {
-    name: 'Rhode Island',
-    value: 'RI',
-  },
-  {
-    name: 'South Carolina',
-    value: 'SC',
-  },
-  {
-    name: 'South Dakota',
-    value: 'SD',
-  },
-  {
-    name: 'Tennessee',
-    value: 'TN',
-  },
-  {
-    name: 'Texas',
-    value: 'TX',
-  },
-  {
-    name: 'Utah',
-    value: 'UT',
-  },
-  {
-    name: 'Vermont',
-    value: 'VT',
-  },
-  {
-    name: 'Virgin Islands',
-    value: 'VI',
-  },
-  {
-    name: 'Virginia',
-    value: 'VA',
-  },
-  {
-    name: 'Washington',
-    value: 'WA',
-  },
-  {
-    name: 'West Virginia',
-    value: 'WV',
-  },
-  {
-    name: 'Wisconsin',
-    value: 'WI',
-  },
-  {
-    name: 'Wyoming',
-    value: 'WY',
-  },
-];
-const departments = ['Sales', 'Marketing', 'Engineering', 'Human Resources', 'Legal'];
-
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleSaveEmployee = () => {
+  const [stateValue, setStateValue] = useState(states[0].value);
+  const [departmentValue, setDepartmentValue] = useState(departments[0]);
+
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const birthDateRef = useRef();
+  const startDateRef = useRef();
+  const streetRef = useRef();
+  const cityRef = useRef();
+  const zipCodeRef = useRef();
+
+  const handleSaveEmployee = (event) => {
+    console.log(firstNameRef.current.value);
+    console.log(lastNameRef.current.value);
+    console.log(birthDateRef.current.value);
+    console.log(startDateRef.current.value);
+    console.log(streetRef.current.value);
+    console.log(cityRef.current.value);
+    console.log(stateValue);
+    console.log(zipCodeRef.current.value);
+    console.log(departmentValue);
+
+    event.preventDefault();
     handleOpenModal();
   };
 
   return (
-    <>
+    <Container>
       <div className="title">
         <h1>HRnet</h1>
       </div>
@@ -277,47 +60,54 @@ export default function Home() {
         <Link to="/employees">View Current Employees</Link>
         <h2>Create Employee</h2>
 
-        <form action="#" id="create-employee">
-          <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first-name" />
-
-          <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" />
+        <form onSubmit={handleSaveEmployee}>
+          <TextField id="first-name" label="First Name" inputRef={firstNameRef} />
+          <TextField id="last-name" label="Last Name" inputRef={lastNameRef} />
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
-              <DatePicker label="Date of Birth" id="date-of-birth" />
+              <DatePicker label="Date of Birth" id="date-of-birth" inputRef={birthDateRef} />
             </DemoContainer>
           </LocalizationProvider>
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
-              <DatePicker label="Start Date" id="start-date" />
+              <DatePicker label="Start Date" id="start-date" inputRef={startDateRef} />
             </DemoContainer>
           </LocalizationProvider>
 
-          <fieldset className="address">
+          <fieldset>
             <legend>Address</legend>
 
-            <label htmlFor="street">Street</label>
-            <input id="street" type="text" />
+            <TextField id="street" label="Street" inputRef={streetRef} />
+            <TextField id="city" label="City" inputRef={cityRef} />
 
-            <label htmlFor="city">City</label>
-            <input id="city" type="text" />
+            <FormSelect
+              label="State"
+              choices={states}
+              value={stateValue}
+              onValueChange={(value) => setStateValue(value)}
+            />
 
-            <FormSelect label="State" choices={states} />
-
-            <label htmlFor="zip-code">Zip Code</label>
-            <input id="zip-code" type="number" />
+            <TextField
+              id="zip-code"
+              label="Zip Code"
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+              inputRef={zipCodeRef}
+            />
           </fieldset>
 
           <FormSelect
             label="Department"
             choices={departments.map((item) => ({ name: item, value: item }))}
+            value={departmentValue}
+            onValueChange={(value) => setDepartmentValue(value)}
           />
-        </form>
 
-        <button onClick={handleSaveEmployee}>Save</button>
+          <Button type="submit" variant="contained">
+            Save
+          </Button>
+        </form>
       </div>
 
       <Modal open={isModalOpen} onClose={handleCloseModal}>
@@ -325,6 +115,6 @@ export default function Home() {
           <p>Employee Created!</p>
         </Box>
       </Modal>
-    </>
+    </Container>
   );
 }

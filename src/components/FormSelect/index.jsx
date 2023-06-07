@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-export default function FormSelect({ label, choices }) {
-  const [value, setValue] = useState(choices[0].value);
-
+export default function FormSelect({ label, choices, value, onValueChange }) {
   const handleChange = (event) => {
-    setValue(event.target.value);
+    onValueChange(event.target.value);
   };
 
   return (
@@ -26,4 +24,6 @@ export default function FormSelect({ label, choices }) {
 FormSelect.propTypes = {
   label: PropTypes.string.isRequired,
   choices: PropTypes.arrayOf(PropTypes.object).isRequired,
+  value: PropTypes.string.isRequired,
+  onValueChange: PropTypes.func,
 };
