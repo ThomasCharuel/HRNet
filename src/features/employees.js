@@ -10,7 +10,7 @@ const initialState = {
       dateOfBirth: '1987-09-12',
       street: '123 Main Street',
       city: 'Anytown',
-      state: 'California',
+      state: 'CA',
       zipCode: 12345,
     },
     {
@@ -21,7 +21,7 @@ const initialState = {
       dateOfBirth: '1992-07-18',
       street: '321 Maple Lane',
       city: 'Riversville',
-      state: 'Texas',
+      state: 'AS',
       zipCode: 98765,
     },
     {
@@ -32,7 +32,7 @@ const initialState = {
       dateOfBirth: '1988-04-30',
       street: '567 Pine Road',
       city: 'Harborville',
-      state: 'Florida',
+      state: 'CO',
       zipCode: 23456,
     },
   ],
@@ -41,10 +41,14 @@ const initialState = {
 export const employeesSlice = createSlice({
   name: 'employees',
   initialState,
-  reducers: {},
+  reducers: {
+    addEmployee: (state, action) => {
+      state.data.push(action.payload);
+    },
+  },
 });
 
-//export const {} = employeesSlice.actions;
+export const { addEmployee } = employeesSlice.actions;
 
 export const selectEmployees = (state) => state.employees.data;
 

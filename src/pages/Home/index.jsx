@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Modal, Box, Container, Button, TextField } from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormSelect from '../../components/FormSelect';
+import { addEmployee } from '../../features/employees';
 import { states, departments } from './constants';
 
 const modalStyle = {
@@ -21,6 +23,7 @@ const modalStyle = {
 };
 
 export default function Home() {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -37,15 +40,29 @@ export default function Home() {
   const zipCodeRef = useRef();
 
   const handleSaveEmployee = (event) => {
-    console.log(firstNameRef.current.value);
-    console.log(lastNameRef.current.value);
-    console.log(birthDateRef.current.value);
-    console.log(startDateRef.current.value);
-    console.log(streetRef.current.value);
-    console.log(cityRef.current.value);
-    console.log(stateValue);
-    console.log(zipCodeRef.current.value);
-    console.log(departmentValue);
+    const firstName = firstNameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    const dateOfBirth = birthDateRef.current.value;
+    const startDate = startDateRef.current.value;
+    const street = streetRef.current.value;
+    const city = cityRef.current.value;
+    const state = stateValue;
+    const zipCode = zipCodeRef.current.value;
+    const department = departmentValue;
+
+    dispatch(
+      addEmployee({
+        firstName,
+        lastName,
+        dateOfBirth,
+        startDate,
+        street,
+        city,
+        state,
+        zipCode,
+        department,
+      }),
+    );
 
     event.preventDefault();
     handleOpenModal();
