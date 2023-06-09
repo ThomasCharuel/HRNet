@@ -40,7 +40,7 @@ export default function SelectDropdown({
       className={`${styles.container} ${dropdownIsOpen && styles.container_opened}`}
       ref={componentRef}
     >
-      <p>{label}</p>
+      <p onClick={() => toggleDropdown()}>{label}</p>
       <div className={styles.header} onClick={() => toggleDropdown()}>
         <div className={styles.header__selected_value}>{choice ? choice.label : placeholder}</div>
         <img className={styles.header__icon} src={CaretIcon} />

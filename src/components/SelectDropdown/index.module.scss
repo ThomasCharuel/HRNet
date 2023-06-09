@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  user-select: none;
 
   &_open {
     .header {
@@ -19,7 +20,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  user-select: none;
   position: relative;
   background-color: white;
   cursor: pointer;

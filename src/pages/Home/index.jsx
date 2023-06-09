@@ -78,7 +78,8 @@ export default function Home() {
         <h2>Create Employee</h2>
 
         <form onSubmit={handleSaveEmployee}>
-          <TextField id="first-name" label="First Name" inputRef={firstNameRef} />
+          <label htmlFor="first-name">First Name</label>
+          <TextField id="first-name" inputRef={firstNameRef} />
           <TextField id="last-name" label="Last Name" inputRef={lastNameRef} />
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
