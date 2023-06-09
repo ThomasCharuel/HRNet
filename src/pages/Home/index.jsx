@@ -6,9 +6,9 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import FormSelect from '../../components/FormSelect';
 import { addEmployee } from '../../features/employees';
 import { states, departments } from './constants';
+import SelectDropdown from '../../components/SelectDropdown';
 
 const modalStyle = {
   position: 'absolute',
@@ -99,10 +99,9 @@ export default function Home() {
             <TextField id="street" label="Street" inputRef={streetRef} />
             <TextField id="city" label="City" inputRef={cityRef} />
 
-            <FormSelect
+            <SelectDropdown
               label="State"
               choices={states}
-              value={stateValue}
               onValueChange={(value) => setStateValue(value)}
             />
 
@@ -114,10 +113,9 @@ export default function Home() {
             />
           </fieldset>
 
-          <FormSelect
+          <SelectDropdown
             label="Department"
-            choices={departments.map((item) => ({ name: item, value: item }))}
-            value={departmentValue}
+            choices={departments.map((item) => ({ value: item, label: item }))}
             onValueChange={(value) => setDepartmentValue(value)}
           />
 

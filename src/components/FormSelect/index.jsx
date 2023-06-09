@@ -25,5 +25,5 @@ FormSelect.propTypes = {
   label: PropTypes.string.isRequired,
   choices: PropTypes.arrayOf(PropTypes.object).isRequired,
   value: PropTypes.string.isRequired,
-  onValueChange: PropTypes.func,
+  onValueChange: PropTypes.func.isRequired,
 };
