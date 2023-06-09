@@ -1,0 +1,42 @@
+body {
+  box-sizing: border-box;
+  margin: unset;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+ul,
+ol {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+button {
+  border: unset;
+  background-color: unset;
+  padding: unset;
+  text-align: unset;
+  font-family: unset;
+  font-size: unset;
+  color: unset;
+  cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: unset;
+}

@@ -1,14 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Modal, Box, Container, Button, TextField } from '@mui/material';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Modal, Box, Button } from '@mui/material';
 import { addEmployee } from '../../features/employees';
 import { states, departments } from './constants';
+import FieldSet from '../../components/FieldSet';
+import TextField from '../../components/TextField';
 import SelectDropdown from '../../components/SelectDropdown';
+import DatePicker from '../../components/DatePicker';
+import styles from './index.module.scss';
 
 const modalStyle = {
   position: 'absolute',
@@ -28,26 +28,25 @@ export default function Home() {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const [stateValue, setStateValue] = useState(states[0].value);
-  const [departmentValue, setDepartmentValue] = useState(departments[0]);
-
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const birthDateRef = useRef();
-  const startDateRef = useRef();
-  const streetRef = useRef();
-  const cityRef = useRef();
-  const zipCodeRef = useRef();
+  const [firstNameValue, setFirstNameValue] = useState();
+  const [lastNameValue, setLastNameValue] = useState();
+  const [birthDateValue, setBirthDateValue] = useState();
+  const [startDateValue, setStartDateValue] = useState();
+  const [streetValue, setStreetValue] = useState();
+  const [cityValue, setCityValue] = useState();
+  const [zipCodeValue, setZipCodeValue] = useState();
+  const [stateValue, setStateValue] = useState();
+  const [departmentValue, setDepartmentValue] = useState();
 
   const handleSaveEmployee = (event) => {
-    const firstName = firstNameRef.current.value;
-    const lastName = lastNameRef.current.value;
-    const dateOfBirth = birthDateRef.current.value;
-    const startDate = startDateRef.current.value;
-    const street = streetRef.current.value;
-    const city = cityRef.current.value;
+    const firstName = firstNameValue;
+    const lastName = lastNameValue;
+    const dateOfBirth = birthDateValue;
+    const startDate = startDateValue;
+    const street = streetValue;
+    const city = cityValue;
     const state = stateValue;
-    const zipCode = zipCodeRef.current.value;
+    const zipCode = zipCodeValue;
     const department = departmentValue;
 
     dispatch(
@@ -69,7 +68,7 @@ export default function Home() {
   };
 
   return (
-    <Container>
+    <div className={styles.container}>
       <div className="title">
         <h1>HRnet</h1>
       </div>
@@ -77,28 +76,15 @@ export default function Home() {
         <Link to="/employees">View Current Employees</Link>
         <h2>Create Employee</h2>
 
-        <form onSubmit={handleSaveEmployee}>
-          <label htmlFor="first-name">First Name</label>
-          <TextField id="first-name" inputRef={firstNameRef} />
-          <TextField id="last-name" label="Last Name" inputRef={lastNameRef} />
+        <form className={styles.form} onSubmit={handleSaveEmployee}>
+          <TextField label="First Name" onValueChange={setFirstNameValue} />
+          <TextField label="Last Name" onValueChange={setLastNameValue} />
+          <DatePicker label="Date of Birth" onValueChange={(value) => setBirthDateValue(value)} />
+          <DatePicker label="Start Date" onValueChange={(value) => setStartDateValue(value)} />
 
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DatePicker']}>
-              <DatePicker label="Date of Birth" id="date-of-birth" inputRef={birthDateRef} />
-            </DemoContainer>
-          </LocalizationProvider>
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DatePicker']}>
-              <DatePicker label="Start Date" id="start-date" inputRef={startDateRef} />
-            </DemoContainer>
-          </LocalizationProvider>
-
-          <fieldset>
-            <legend>Address</legend>
-
-            <TextField id="street" label="Street" inputRef={streetRef} />
-            <TextField id="city" label="City" inputRef={cityRef} />
+          <FieldSet legend="Address">
+            <TextField label="Street" onValueChange={setStreetValue} />
+            <TextField label="City" onValueChange={setCityValue} />
 
             <SelectDropdown
               label="State"
@@ -106,13 +92,8 @@ export default function Home() {
               onValueChange={(value) => setStateValue(value)}
             />
 
-            <TextField
-              id="zip-code"
-              label="Zip Code"
-              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-              inputRef={zipCodeRef}
-            />
-          </fieldset>
+            <TextField label="Zip Code" onValueChange={setZipCodeValue} type="number" />
+          </FieldSet>
 
           <SelectDropdown
             label="Department"
@@ -131,6 +112,6 @@ export default function Home() {
           <p>Employee Created!</p>
         </Box>
       </Modal>
-    </Container>
+    </div>
   );
 }
