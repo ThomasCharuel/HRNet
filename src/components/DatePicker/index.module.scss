@@ -9,4 +9,22 @@
   width: 100%;
   border: 1px solid gray;
   border-radius: 5px;
+  position: relative;
+
+  &::-webkit-calendar-picker-indicator {
+    color: transparent;
+    background: none;
+    z-index: 1;
+  }
+
+  &:after {
+    display: block;
+    content: ' ';
+    background: url('../../assets/img/calendar.png');
+    background-size: cover;
+    width: 1.6rem;
+    height: 1.6rem;
+    position: absolute;
+    right: 10px;
+  }
 }
