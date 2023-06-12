@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import MUIDataTable from 'mui-datatables';
 import { selectEmployees } from '../../features/employees';
 
@@ -82,8 +81,6 @@ export default function Employees() {
     <div id="employee-div" className="container">
       <h1>Current Employees</h1>
       <MUIDataTable data={employees} columns={columns} />
-      <table id="employee-table" className="display"></table>
-      <Link to="/">Home</Link>
     </div>
   );
 }
