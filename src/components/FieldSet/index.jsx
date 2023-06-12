@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 export default function FieldSet({ legend, children }) {
   return (
     <fieldset className={styles.container}>
-      <legend>{legend}</legend>
+      <legend className={styles.legend}>{legend}</legend>
       {children}
     </fieldset>
   );

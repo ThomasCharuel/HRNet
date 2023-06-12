@@ -9,7 +9,9 @@ export default function TextField({ label, onValueChange, type = 'text' }) {
 
   return (
     <div className={styles.container}>
-      <label htmlFor={`${label}-input`}>{label}</label>
+      <label className={styles.label} htmlFor={`${label}-input`}>
+        {label}
+      </label>
       <input onChange={handleChange} type={type} id={`${label}-input`} className={styles.input} />
     </div>
   );

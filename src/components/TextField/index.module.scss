@@ -1,7 +1,13 @@
+@import '../../styles/_variables';
+
 .container {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+}
+
+.label {
+  font-weight: $font-weight-medium;
 }
 
 .input {
