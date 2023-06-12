@@ -69,40 +69,36 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <div className="title">
-        <h1>HRnet</h1>
-      </div>
-      <div className="container">
-        <h2>Create Employee</h2>
+      <h1 className={styles.title}>HRnet</h1>
+      <h2 className={styles.title2}>Create Employee</h2>
 
-        <form className={styles.form} onSubmit={handleSaveEmployee}>
-          <TextField label="First Name" onValueChange={setFirstNameValue} />
-          <TextField label="Last Name" onValueChange={setLastNameValue} />
-          <DatePicker label="Date of Birth" onValueChange={(value) => setBirthDateValue(value)} />
-          <DatePicker label="Start Date" onValueChange={(value) => setStartDateValue(value)} />
+      <form className={styles.form} onSubmit={handleSaveEmployee}>
+        <TextField label="First Name" onValueChange={setFirstNameValue} />
+        <TextField label="Last Name" onValueChange={setLastNameValue} />
+        <DatePicker label="Date of Birth" onValueChange={(value) => setBirthDateValue(value)} />
+        <DatePicker label="Start Date" onValueChange={(value) => setStartDateValue(value)} />
 
-          <FieldSet legend="Address">
-            <TextField label="Street" onValueChange={setStreetValue} />
-            <TextField label="City" onValueChange={setCityValue} />
-
-            <SelectDropdown
-              label="State"
-              choices={states}
-              onValueChange={(value) => setStateValue(value)}
-            />
-
-            <TextField label="Zip Code" onValueChange={setZipCodeValue} type="number" />
-          </FieldSet>
+        <FieldSet legend="Address">
+          <TextField label="Street" onValueChange={setStreetValue} />
+          <TextField label="City" onValueChange={setCityValue} />
 
           <SelectDropdown
-            label="Department"
-            choices={departments.map((item) => ({ value: item, label: item }))}
-            onValueChange={(value) => setDepartmentValue(value)}
+            label="State"
+            choices={states}
+            onValueChange={(value) => setStateValue(value)}
           />
 
-          <Button label="Save" variant="inline" />
-        </form>
-      </div>
+          <TextField label="Zip Code" onValueChange={setZipCodeValue} type="number" />
+        </FieldSet>
+
+        <SelectDropdown
+          label="Department"
+          choices={departments.map((item) => ({ value: item, label: item }))}
+          onValueChange={(value) => setDepartmentValue(value)}
+        />
+
+        <Button label="Save" variant="inline" />
+      </form>
 
       <Modal open={isModalOpen} onClose={handleCloseModal}>
         <Box sx={modalStyle}>

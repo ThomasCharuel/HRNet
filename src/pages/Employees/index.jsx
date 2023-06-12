@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import MUIDataTable from 'mui-datatables';
 import { selectEmployees } from '../../features/employees';
+import styles from './index.module.scss';
 
 const columns = [
   {
@@ -71,15 +72,14 @@ const columns = [
 
 export default function Employees() {
   const employees = useSelector(selectEmployees);
-  console.log(employees);
 
   useEffect(() => {
     document.title = 'HRnet - Current Employees';
   }, []);
 
   return (
-    <div id="employee-div" className="container">
-      <h1>Current Employees</h1>
+    <div id="employee-div" className={styles.container}>
+      <h1 className={styles.title}>Current Employees</h1>
       <MUIDataTable data={employees} columns={columns} />
     </div>
   );
