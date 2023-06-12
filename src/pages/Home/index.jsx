@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Modal, Box, Button } from '@mui/material';
+import { Modal, Box } from '@mui/material';
 import { addEmployee } from '../../features/employees';
 import { states, departments } from './constants';
+import Button from '../../components/Button';
 import FieldSet from '../../components/FieldSet';
 import TextField from '../../components/TextField';
 import SelectDropdown from '../../components/SelectDropdown';
@@ -99,9 +100,7 @@ export default function Home() {
             onValueChange={(value) => setDepartmentValue(value)}
           />
 
-          <Button type="submit" variant="contained">
-            Save
-          </Button>
+          <Button label="Save" variant="inline" />
         </form>
       </div>
 
