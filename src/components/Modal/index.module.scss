@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+
+.darkBackground {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $color-white;
+  border: 2px solid $color-black;
+  border-radius: 15px;
+  width: 40rem;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  background-color: $color-black;
+  display: flex;
+  align-content: center;
+  justify-items: center;
+  padding: 0.4rem;
+  border-radius: 50%;
+
+  transition: transform 0.1s ease-in-out;
+
+  &:hover,
+  &:focus {
+    transform: translate(50%, -50%) scale(1.02);
+  }
+
+  img {
+    color: white;
+    object-fit: cover;
+    width: 1rem;
+  }
+}

@@ -1,26 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Modal, Box } from '@mui/material';
 import { addEmployee } from '../../features/employees';
 import { states, departments } from './constants';
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 import FieldSet from '../../components/FieldSet';
 import TextField from '../../components/TextField';
 import SelectDropdown from '../../components/SelectDropdown';
 import DatePicker from '../../components/DatePicker';
 import styles from './index.module.scss';
-
-const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -99,11 +87,10 @@ export default function Home() {
 
         <Button label="Save" variant="inline" />
       </form>
-
-      <Modal open={isModalOpen} onClose={handleCloseModal}>
-        <Box sx={modalStyle}>
+      <Modal show={isModalOpen} onClose={handleCloseModal}>
+        <div className={styles.modal__container}>
           <p>Employee Created!</p>
-        </Box>
+        </div>
       </Modal>
     </div>
   );
