@@ -70,6 +70,10 @@ const columns = [
   },
 ];
 
+const options = {
+  selectableRows: 'none',
+};
+
 export default function Employees() {
   const employees = useSelector(selectEmployees);
 
@@ -80,7 +84,7 @@ export default function Employees() {
   return (
     <div id="employee-div" className={styles.container}>
       <h1 className={styles.title}>Current Employees</h1>
-      <MUIDataTable data={employees} columns={columns} />
+      <MUIDataTable data={employees} columns={columns} options={options} />
     </div>
   );
 }

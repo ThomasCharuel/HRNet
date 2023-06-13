@@ -7,7 +7,13 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link to="/">
-        <img src={logo} alt="Logo HRNet" className={styles.header__logo} />
+        <img
+          src={logo}
+          alt="Logo HRNet"
+          className={styles.header__logo}
+          width="2.6rem"
+          height="2.6rem"
+        />
       </Link>
       <nav className={styles.header__navigation}>
         <ul>
