@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { SelectDropdown } from 'react-choice-select';
 import { addEmployee } from '../../features/employees';
 import { states, departments } from './constants';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import FieldSet from '../../components/FieldSet';
 import TextField from '../../components/TextField';
-import SelectDropdown from '../../components/SelectDropdown';
 import DatePicker from '../../components/DatePicker';
 import styles from './index.module.scss';
 
