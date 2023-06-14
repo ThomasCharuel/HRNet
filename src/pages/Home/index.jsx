@@ -72,8 +72,8 @@ export default function Home() {
 
           <SelectDropdown
             label="State"
-            choices={states}
-            onValueChange={(value) => setStateValue(value)}
+            options={states}
+            onChange={(value) => setStateValue(value)}
           />
 
           <TextField label="Zip Code" onValueChange={setZipCodeValue} type="number" />
@@ -81,8 +81,8 @@ export default function Home() {
 
         <SelectDropdown
           label="Department"
-          choices={departments.map((item) => ({ value: item, label: item }))}
-          onValueChange={(value) => setDepartmentValue(value)}
+          options={departments.map((item) => ({ value: item, label: item }))}
+          onChange={(value) => setDepartmentValue(value)}
         />
 
         <Button label="Save" variant="inline" />
