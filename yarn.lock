@@ -7951,10 +7951,10 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-choice-select@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/react-choice-select/-/react-choice-select-0.1.2.tgz#426995f7c59c3a8566ebc6888f4be8152e2978f7"
-  integrity sha512-HsnZjoL4lZrALaY4eT9jhmoXGwBvXcRebEE6fp0pGOv9jw9eeyEevZLawIpZpFkuMuxrObN+DIJZpTSlbsuvvA==
+react-choice-select@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-choice-select/-/react-choice-select-0.1.4.tgz#533382aa99493570b41e017f56903fc9137a23ba"
+  integrity sha512-UWdF3BXW2Xy0zoeSq0/QW9ky1ZzePbPYLOAJQ8hkSoqgGFuws82rniegNoFYqEZa94TZoe/WUBk6upn2kQqjmw==
   dependencies:
     "@babel/polyfill" "^7.12.1"
 
