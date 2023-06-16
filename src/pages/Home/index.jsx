@@ -12,7 +12,7 @@ import DatePicker from '../../components/DatePicker';
 import styles from './index.module.scss';
 
 export default function Home() {
-  useDocumentTitle('HRNet');
+  useDocumentTitle('HRnet');
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);

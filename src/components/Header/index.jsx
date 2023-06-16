@@ -9,7 +9,7 @@ export default function Header() {
       <Link to="/">
         <img
           src={logo}
-          alt="Logo HRNet"
+          alt="Logo HRnet"
           className={styles.header__logo}
           width="2.6rem"
           height="2.6rem"
