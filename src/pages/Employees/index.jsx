@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import MUIDataTable from 'mui-datatables';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { selectEmployees } from '../../features/employees';
 import styles from './index.module.scss';
 
@@ -75,11 +76,9 @@ const options = {
 };
 
 export default function Employees() {
-  const employees = useSelector(selectEmployees);
+  useDocumentTitle('HRnet - Current Employees');
 
-  useEffect(() => {
-    document.title = 'HRnet - Current Employees';
-  }, []);
+  const employees = useSelector(selectEmployees);
 
   return (
     <div id="employee-div" className={styles.container}>

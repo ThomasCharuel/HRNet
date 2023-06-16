@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { SelectDropdown } from 'react-choice-select';
 import { addEmployee } from '../../features/employees';
 import { states, departments } from './constants';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import FieldSet from '../../components/FieldSet';
@@ -11,6 +12,7 @@ import DatePicker from '../../components/DatePicker';
 import styles from './index.module.scss';
 
 export default function Home() {
+  useDocumentTitle('HRNet');
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
